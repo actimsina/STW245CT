@@ -1,0 +1,31 @@
+version: '3'
+services:
+  web:
+    image: cueh/6005_fc-web
+    #build:
+    #  context: html
+    ports:
+      - "80:80"
+    #restart: always
+      
+  selenium:
+    image: selenium/standalone-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+    #ports:
+    #  - 4444:4444
+      
+  pychecker:
+    depends_on:
+      - web
+      - selenium
+    image: cueh/6005_fc_checker
+    #build:
+    #  context: Python
+
+  overflow:
+    image: cueh/6005_fc-exploit
+    #build:
+    #  context: Exploit
+    ports:
+      - "22:22"
