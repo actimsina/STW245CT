@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  ssh:
+    build:
+      context: ssh
+    ports:
+      - "22:22"
+#  telnet:
+#    build:
+#      context: telnet
+#    ports:
+#      - 21:21
+    
