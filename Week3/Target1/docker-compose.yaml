@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ssh:
+    image: cueh/debian_ssh
+    ports:
+      - "22:22"
+  web:
+    image: cueh/php_apache
+    ports:
+      - "80:80"
+  ftp:
+    image: stilliard/pure-ftpd
+    ports:
+      - "21:21"
+  smtp:
+    image: cueh/typewriter_postfix
+    ports:
+      - "25:25"

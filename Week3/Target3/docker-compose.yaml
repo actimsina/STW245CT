@@ -1,0 +1,26 @@
+version: '3'
+services:
+  ssh:
+    image: cueh/debian_ssh
+    ports:
+      - "242:22"
+  web:
+    image: cueh/scanningweb #cueh/php_apache
+    ports:
+      - "80:80"
+    volumes:
+      - data-volume:/var/www/html/ftp-uploads/
+  ftp:
+    image: cueh/ftpanon #stilliard/pure-ftpd
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - data-volume:/var/ftp/
+  smtp:
+    image: cueh/typewriter_postfix
+    ports:
+      - "25:25"
+
+volumes:
+  data-volume:
