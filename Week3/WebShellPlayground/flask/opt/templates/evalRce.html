@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Eval based RCE</h1>
+
+<p>
+  In this challenge we can look at RCE via the Python eval() 
+</p>
+<p>
+  Eval wont let us execute system commands directly, as the commands are
+  run within the python interpreter.  We need to work around this by using Pythons
+  internals to build a one liner, that will execute our code.
+
+  For example <code>__import__('os').system('whoami')</code>
+</p>
+
+<p>
+  We also have a second problem. While system will run the command for us,
+  it doesn't give us any output.  I am going to leave it up to you to work
+  this one out.</p>
+
+<p>
+  <strong>TIP:</strong>  You can check the docker-compose logs to get some feedback.
+</p>
+
+<div class="row mt-5">
+  <form>
+    <div class="form-group">
+      <label for="payload">Command</label>
+      <input id="payload" name="payload" placeholder="whoami"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+  {% if command %}
+  <div class="alert alert-info">Command Entered: {{ command }}</div>
+  {% endif %}
+  
+  {% if output %}
+  <pre>
+    <code>
+    {{ output }} 
+    </code>
+  </pre>
+  {% endif %}
+
+  {% if error %}
+  <div class="alert alert-warning">Error</div>
+  <pre>
+    {{ error }}
+  </pre>
+  {% endif %}
+</div>
+
+{% endblock content %}

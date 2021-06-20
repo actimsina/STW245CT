@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Subprocess based RCE</h1>
+
+<p>
+  In this challenge we can look at RCE via the Python Subprocess module.
+</p>
+<p>
+  Using Subprocess means that we can call system commands directly,
+  without having to use any special syntax
+</p>
+
+<div class="row mt-5">
+  <form>
+    <div class="form-group">
+      <label for="payload">Command</label>
+      <input id="payload" name="payload" placeholder="whoami"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+  {% if output %}
+  <div class="alert alert-info">Command Entered: {{ command }}</div>
+  <pre>
+    <code>
+    {{ output }} 
+    </code>
+  </pre>
+  {% endif %}
+</div>
+
+
+
+
+{% endblock content %}

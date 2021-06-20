@@ -1,0 +1,5 @@
+FROM cueh/php_apache
+
+RUN apt-get update && apt-get install -y --no-install-recommends netcat
+
+ADD --chown=www-data:www-data html /var/www/html

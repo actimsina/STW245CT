@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  web:
+    #image: cueh/php_apache
+    build:
+      context: php
+    ports:
+      - 80:80
+#    volumes:
+#      - ./php/html/:/var/www/html
+
+  flask:
+    build:
+      context: flask
+    ports:
+      - 5000:5000
+#    volumes:
+#      - ./flask/opt:/opt
+#    environment:
+#      - FLASK_ENV=development
