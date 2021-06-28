@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block navTabs %}
+{% include "helpers/requestNav.html" %}
+{% endblock navTabs %}
+
+
+
+
+{% block content %}
+
+<h1>Automation</h1>
+
+<div class="section">
+  <p>Answer the Questions</p>
+</div>
+
+<div class="section">
+    <form>
+    <div class="row">
+      <div class="input-field col s12">
+	<input id="q1" name="q1" type="text">
+	<label for="q1">What is {{q1}}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+	<input id="q2" name="q2" type="text" placeholder="{{q2}}">
+	<label for="q2">Enter the text {{ q2 }}</label>
+      </div>
+    </div>
+     <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+  </form>
+</div>
+
+{% if submitted %}
+<div class="section">
+  {% if flag %}
+  {{ flag }}
+  {% else %}
+  {{ submitted }}
+    {% endif %}
+</div>
+{% endif %}
+
+{% endblock content %}

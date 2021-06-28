@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./opt:/opt
+    environment:
+      - FLASK_APP=/opt/RequestApp
+      - FLASK_ENV=development
+      

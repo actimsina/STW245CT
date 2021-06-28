@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <title>Python Requests</title>
+
+    <style>
+      nav a {
+	  text-transform: uppercase;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+
+    {# We Cannot have Include and Blocks #}
+    <nav class="nav-extended  blue-grey">
+  
+      <div class="nav-wrapper blue-grey lighten-1">
+	<a href="{{ url_for('main') }}" class="brand-logo right">Requests</a>
+	<ul id="nav-mobile" class="hide-on-med-and-down">
+          {#<li><a href="{{ url_for('main') }}">Home</a></li>#}
+          <li><a href="{{ url_for('requestHeaders') }}">Requests</a></li>
+	  <li><a href="{{ url_for('hiddenState')}}">Sessions</a></li>
+	</ul>
+      </div>
+      {% block navTabs %}
+
+      {% endblock navTabs %}
+    </nav>
+    
+      
+    {% block content %}
+    {% endblock content %}      
+  </div>
+
+        <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>

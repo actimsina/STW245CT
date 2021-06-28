@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>HTTP-Requests</h1>
+
+<p>Playing with HTTP Requests</p>
+
+<h2>Practice</h2>
+
+<ul>
+  <li><a href={{ url_for("requestHeaders") }}>Show Request Headers</a></li>
+</ul>
+
+{% endblock content %}

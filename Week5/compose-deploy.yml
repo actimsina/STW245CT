@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    expose:
+      - 5000
+    environment:
+      - FLASK_APP=/opt/RequestApp
+      
+#    deploy:
+#      restart_policy:
+#        condition: any
+#        delay: 5s
+#        max_attempts: 5
+#        window: 120s

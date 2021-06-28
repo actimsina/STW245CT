@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block navTabs %}
+{% include "helpers/requestNav.html" %}
+{% endblock navTabs %}
+
+
+{% block content %}
+<h1>Requests Challenge: User Agents</h1>
+
+<div class="section">
+<p>We have full control over the request Headers sent to the server.  This means we can modify them
+  to change the behaviour of the site</p>
+
+<p>For this challenge that meets the following criteria</p>
+
+<ul>
+  <li>POST request</li>
+  <li>Uses the <code>l33t Hax0r</code> user agent</li>
+</ul>
+</div>
+
+
+<div class="section">
+  <form>
+    <div class="row">
+      <div class="input-field col s12">
+	<input id="user" name="user" type="text">
+	<label for="user">User Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+	<input id="password" type="password" name="pasword" class="validate">
+	<label for="password">Password</label>
+      </div>
+    </div>
+     <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+  </form>
+</div>
+
+
+
+{% if flag %}
+<div class="section">
+  <h3>Challenge Complete<h3>
+      {{ flag }}  
+</div>
+{% endif %}
+
+
+
+{% endblock %}

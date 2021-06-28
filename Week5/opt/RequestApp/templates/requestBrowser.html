@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block navTabs %}
+{% include "helpers/requestNav.html" %}
+{% endblock navTabs %}
+
+
+{% block content %}
+<h1>Requests Browser</h1>
+
+<p>Here we can see the current request headers</p>
+<p>Use Burp, or the Inspector tool, and try playing around changing
+the request parameters and see how the data changes</p>
+
+
+  {% include "helpers/displayRequest.jinja2" %}
+</div>
+{% endblock content %}

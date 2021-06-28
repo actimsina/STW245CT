@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block navTabs %}
+{% include "helpers/requestNav.html" %}
+{% endblock navTabs %}
+
+
+
+
+{% block content %}
+
+
+
+<h1>{{ method }} Requests Browser</h1>
+
+<p>You can use this page to see the headers sent as part of a {{ method }} request</p>
+<p>You can also use the form to submit data</p>
+
+
+<div class="section">
+  <form method={{ method }}>
+    <div class="row">
+      <div class="input-field col s12">
+	<input id="user" name="user" type="text">
+	<label for="user">User Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+	<input id="password" type="password" name="pasword" class="validate">
+	<label for="password">Password</label>
+      </div>
+    </div>
+     <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+  </form>
+</div>
+
+
+{% include "helpers/displayRequest.jinja2" %}
+
+
+{% endblock content %}

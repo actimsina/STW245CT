@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block navTabs %}
+{% include "helpers/sessionNav.html" %}
+{% endblock navTabs %}
+
+
+
+{% block content %}
+<h1>Cookie Check</h1>
+
+
+{% if admin=="True" %}
+<p>Admin User</p>
+<p>Have a Flag  245CT{Co0k1e_Tim3outs}</p>
+{% else %}
+<p>Too Slow</p>
+{% endif %}
+
+
+{% endblock %}
