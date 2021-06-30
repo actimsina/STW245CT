@@ -36,24 +36,24 @@ def postHeaders():
     return flask.render_template('requestBrowserForm.html', method="POST")
 
 
-# @app.route("/headers/requestJson", methods=HTTP_METHODS)
-# def requestJson():
-#     """
-#     View the Request headers in JSON format
-#     """
+@app.route("/headers/requestJson", methods=HTTP_METHODS)
+def requestJson():
+    """
+    View the Request headers in JSON format
+    """
 
-#     logging.warning(flask.request.headers)
-#     output = {"method": flask.request.method,
-#               "headers": dict(flask.request.headers),
-#               "args": dict(flask.request.args),
-#               "body": dict(flask.request.form)}
-#     response = app.response_class(
-#         response=json.dumps(output),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     #What we want is the same information
-#     return response
+    logging.warning(flask.request.headers)
+    output = {"method": flask.request.method,
+              "headers": dict(flask.request.headers),
+              "args": dict(flask.request.args),
+              "body": dict(flask.request.form)}
+    response = app.response_class(
+        response=json.dumps(output),
+        status=200,
+        mimetype='application/json'
+    )
+    # What we want is the same information
+    return response
 
 
 # @app.route("challenges/requests/EM")
