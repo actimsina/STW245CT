@@ -64,6 +64,7 @@ def automateChallenge():
                 tDelta = sTime - automateData["time"]
                 if tDelta < 2:
                     flag = "245{Automation_R0cks}"
+                    return flag
                 else:
                     submitted = "Too Slow"
             else:
