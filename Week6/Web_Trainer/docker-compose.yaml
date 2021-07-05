@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    image: 7024cem/webtrainer
+    ports:
+      - "8080:80"
+    networks:
+      - main_network
+
+  database:
+    image:  7024cem/webdb
+    environment:
+      - MYSQL_ROOT_PASSWORD=cueh
+    networks:
+      - main_network
+    ports:
+      - 3306:3306
+     
+networks:
+  main_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet : 172.18.0.0/24
+
