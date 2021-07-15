@@ -1,0 +1,31 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./PHP
+    ports:
+      - "80:80"
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - "./PHP/content/:/var/www/html/"
+      
+  database:
+    build:
+      context: ./SQL
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=cueh
+      - MYSQL_DATABASE=maindb
+    networks:
+      - internal_network
+
+
+
+networks:
+  external_network:
+    driver: bridge
+  internal_network:
+    driver: bridge
