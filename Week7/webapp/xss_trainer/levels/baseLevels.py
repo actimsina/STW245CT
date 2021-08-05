@@ -18,7 +18,7 @@ class Training(meta.BaseLevel):
     Our initial Training Level
     """
     levelname = "Tutorial"
-    template="intro.html"
+    template = "intro.html"
 
 
 class NoFilter(meta.BaseLevel):
@@ -30,6 +30,7 @@ class NoFilter(meta.BaseLevel):
     flag = "CUEH{Made_It_Past_Level_1}"
     author = "Dang42"
 
+
 class ClientFilter(meta.BaseLevel):
     """
     In this level we protect by making sure the user submits an email
@@ -38,6 +39,7 @@ class ClientFilter(meta.BaseLevel):
     template = "ClientSide.html"
     author = "Dang42"
 
+
 class SimpleReplace(meta.BaseLevel):
     """
     Replace just <script>
@@ -45,7 +47,6 @@ class SimpleReplace(meta.BaseLevel):
     levelname = "Simple Replace"
     template = "SimpleReplace.html"
     author = "Dang42"
-
 
     def sanitise(self, data):
         payload = data.replace("<script>", "")
@@ -61,11 +62,11 @@ class BasicRegexp(meta.BaseLevel):
     template = "BasicRegexp.html"
     author = "Dang42"
 
-
     def sanitise(self, data):
         regexp = re.compile("<\/?script>", re.IGNORECASE)
         payload = regexp.sub("", data)
         return payload
+
 
 class BasicPHPRegexp(meta.BaseLevel):
     """
@@ -95,12 +96,11 @@ class ScriptTagFilter(meta.BaseLevel):
     template = "ScriptTagFilter.html"
     author = "Dang42"
 
-
     def sanitise(self, data):
         regexp = re.compile("script", re.IGNORECASE)
         if regexp.search(data):
             return "<div class='alert alert-critical'>XSS Detected!</div>"
-
+        return data
 
 
 class MarkdownOutput(meta.BaseLevel):
@@ -120,6 +120,7 @@ class MarkdownOutput(meta.BaseLevel):
 
         return payload
 
+
 class TagAttributes(meta.BaseLevel):
     """
     XSS Through manipulating tags
@@ -128,12 +129,12 @@ class TagAttributes(meta.BaseLevel):
     template = "TagAttributes.html"
     author = "Dang42"
 
-
     def sanitise(self, data):
         attributes = flask.request.form.get("attributes", "")
         clean = html.escape(data, quote=True)
         payload = f"<details {attributes}>{clean}</details>"
         return payload
+
 
 class BootstrapTags(meta.BaseLevel):
     """
@@ -144,10 +145,10 @@ class BootstrapTags(meta.BaseLevel):
     template = "BootstrapTags.html"
     author = "Dang42"
 
-
     def sanitise(self, data):
         alertLevel = flask.request.args.get("style", "primary")
         clean = html.escape(data)
         level = alertLevel
-        payload = "<div class='spinner-border text-{1}' role='status'></div>{0}".format(clean,level)
+        payload = "<div class='spinner-border text-{1}' role='status'></div>{0}".format(
+            clean, level)
         return payload
