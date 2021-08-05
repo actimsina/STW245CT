@@ -1,0 +1,19 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+{% markdown %}
+
+This level lets you try Session Jacking.
+
+When we submit our payload "Someone Else" will check the page.
+Try to steal their cookie (Its called {{thisLevel.cookie[0]}})
+
+
+When you get the cookie, use it on this page for a flag.
+
+
+
+{% endmarkdown %}
+
+{% endblock content %}

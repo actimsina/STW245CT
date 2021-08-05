@@ -1,0 +1,54 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+
+{% markdown %}
+
+This should be nice and easy.
+Trigger an alert on this page using reflected XSS
+
+### Filter
+The Filter used in this instance is:
+
+```.python
+#Filter
+def filter(data):
+    return data
+
+#And Application code
+data = request.args.get("payload")
+output = filter(data)
+```
+
+(Which is roughly equivalent to the PHP)
+
+```.php
+<?php
+$data = $_GET["payload"];
+echo ($data);
+?>
+```
+
+{% endmarkdown %}
+{% endblock content %}
+
+{% block defaultForm %}
+<div class="card mt-3">
+  <div class="card-header">
+    <h3>Vulnerable Form</h3>
+  </div>
+  <div class="card-body">
+    <div class="border" id="theForm">
+      <form method="GET" action={{ url_for('levels', levelId=level) }}>
+	<div class="mt-2 mb-3">
+	  <label for="payload" class="form-label">Example User Input</label>
+	  <input class="form-control" name="payload" id="payload" placeholder="<script>alert('testing')</script>"</input>
+		 </div>
+	<button type="submit" id="submitBtn"  class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock defaultForm %}
+

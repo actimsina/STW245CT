@@ -1,0 +1,40 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+{% markdown %}
+
+Telling what the dev is trying to do makes it too  easy ;)
+
+Work out the filter, and a relevant payload to bypass it
+
+*note: The way we detect the XSS has no user interaction,  you may want to bear
+this in mind.*
+
+### Filter
+
+```python
+def filter(data):
+    regexp = ("script", re.IGNORECASE)
+    if regexp.search(data):
+        return "XSS Detected"
+    return data
+```
+
+Or (approximately) Equivalent PHP
+```php
+<?php
+if (preg_match("/script/i", $payload)){
+   die("XSS Detected")
+}
+?>
+```
+
+??? tip "Hint"
+
+    If our program detects the word ```script``` perhaps we can trigger using something else.  Take a look at the examples in the lecture notes for a clue.
+
+{% endmarkdown %}
+{% endblock content%}
+
+{# Overload the default form with a defaultForm block #}

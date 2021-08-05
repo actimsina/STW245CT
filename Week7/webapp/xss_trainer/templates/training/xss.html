@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>XSS Intro</h1>
+
+{% markdown %}
+
+## Heading 2
+
+Foo bar baz
+
+```.python
+
+def foo(bar):
+    print("baz")
+```
+
+{% endmarkdown %}
+
+
+
+{% endblock content %}

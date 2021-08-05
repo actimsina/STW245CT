@@ -1,0 +1,68 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+{% markdown %}
+
+This time we are going to use a decent filter on the input.
+But there may be somewhere else we can inject the payload. 
+
+??? hint
+
+    Whats the framework here?
+
+    Think about string escapes in python.
+
+   
+
+
+### Filter
+
+```python
+def filter(data):
+    alertLevel = flask.request.args.get("style", "primary")
+    clean = html.escape(data)
+
+    return clean, alertLevel
+```
+
+{% endmarkdown %}
+{% endblock content%}
+
+
+{% block defaultForm %}
+<div class="card mt-3">
+  <div class="card-header">
+    <h3>Vulnerable Form</h3>
+  </div>
+  <div class="card-body">
+    <div class="border" id="theForm">
+      <form method="GET" action={{ url_for('levels', levelId=level) }}>
+	<div class="mt-2 mb-3">
+	  <label for="payload" class="form-label">Example User Input</label>
+	  <input class="form-control" type="text" name="payload"
+		 id="payload" placeholder="<script>alert('testing')</script>"></input>
+	</div>
+	<div class="mb-3">
+	  <label for="style">Alert Style</label>
+	  <select class="form-select" name="style" id="style">
+	    <option value="primary">Primary</option>
+	    <option value="secondary">Secondary</option>
+	    <option value="danger">Danger</option>
+	    <option value="warning">Warning</option>
+	    <option value="info">Info</option>
+	  </select>
+	</div>
+	<button type="submit" id="submitBtn"  class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock defaultForm %}
+
+
+{% block scripts %}
+<script>
+  var alertNode = document.querySelector('.alert')
+</script>
+{% endblock %}

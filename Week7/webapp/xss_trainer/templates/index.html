@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>XSS Trainer</h1>
+<p>Learn About XSS.   Break some filters</p>
+
+<p>You are currently on Level {{ level }}</p>
+
+<h3 class="mt-2">Challenges</h3>
+<a class="btn btn-outline-primary" href="{{ url_for('levels') }} ">Start Challenges</a>
+
+<h2 class="mt-3">Levels</h2>
+<p>A set of challenge style levels</p>
+
+{# Loop index is a built in Jinja, handy for enumeration #}
+
+<ul>
+  {% for item in navLevels %}
+  {% if loop.index0 <= session["level"]  %}
+      <li><a href="{{url_for('levels', levelId=loop.index0)}}">Level {{ loop.index0 }}: <strong>{{ item.levelname }}</scrong></a></li>
+    {% else %}
+      <li>Level {{ loop.index0 }}: {{ item.levelname }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+
+{#
+<!-- Not Enough Time -->
+<h3>Training</h3>
+
+<p>Here we have a set of levels (with walkthrough) to get you started.</p>
+
+<a class="btn btn-outline-primary" href="{{ url_for('training') }}">Get Started</a>
+#}
+
+
+
+
+<img src="https://forthebadge.com/images/badges/made-with-crayons.svg">
+<img src="https://forthebadge.com/images/badges/powered-by-overtime.svg" alt="If Only, but there isn't a weekends badge">
+<img height="35px" src="https://forthebadge.com/images/badges/works-on-my-machine.svg">
+
+{% endblock content %}

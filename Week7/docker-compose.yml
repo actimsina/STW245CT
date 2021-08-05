@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  flask:
+    build:
+      context: webapp
+    ports:
+      - "5000:5000"
+    expose:
+      - 5000
+    volumes:
+      - "./webapp/xss_trainer:/opt/xss_trainer"
+    environment:
+      - FLASK_ENV=development
+      #- FLASK_APP=/opt/xss_trainer/app.py
+      - FLASK_APP=xss_trainer
+
+  selenoid:
+    image: cueh/selenoid
+    ports: 
+      - "4444:4444"
+    cap_add:
+      - SYS_ADMIN
+    init: true  #Need this otherwise we get millions of crhomes
+
+
+  #We use Redis for the local session
+  redis:
+    image: redis

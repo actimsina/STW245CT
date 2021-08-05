@@ -1,0 +1,54 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+
+{% markdown %}
+
+This example creates a new tag on the page.
+
+??? hint
+
+	We get free rein with the attributes here.
+	See what gets created and pop a shell
+	
+### Filter
+
+```python
+def filter(data):
+    attributes = flask.request.form.get("attributes", "")
+    clean = html.escape(data, quote=True)
+
+```
+
+
+{% endmarkdown %}
+{% endblock content%}
+
+{# Overload the default form with a defaultForm block #}
+{% block defaultForm %}
+<div class="card mt-3">
+  <div class="card-header">
+    <h3>Vulnerable Form</h3>
+  </div>
+  <div class="card-body">
+    <div class="border" id="theForm">
+      <form method="POST" action={{ url_for('levels', levelId=level) }}>
+	  <div class="mt-2 mb-3">
+	  <label for="payload" class="form-label">Message</label>
+	  <input class="form-control" type="text" name="payload"
+		 id="payload" placeholder="<script>alert('testing')</script>"></input>
+	 </div>
+	 
+	 <div class="mt-2 mb-3">
+	  <label for="attributes" class="form-label">Attributes</label>
+	  <input class="form-control" type="text" name="attributes"
+		 id="attributes" placeholder="id=1"></input>
+	 </div>
+	 <button type="submit" id="submitBtn"  class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock defaultForm %}
+

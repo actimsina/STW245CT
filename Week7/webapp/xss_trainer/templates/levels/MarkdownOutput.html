@@ -1,0 +1,48 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+
+{% markdown %}
+
+This time we are going to use a decent filter on the input.
+But we should still be able to get XSS to trigger if we look carefully
+at the output format
+
+??? hint
+
+    Remember that we should check both the input and output
+    for vulnerabilities.
+
+
+### Filter
+
+```python
+def filter(data):
+    clean = html.escape(data)
+    payload = markdown.markdown(clean, extensions=['legacy_attrs'])
+    return payload
+```
+
+{% endmarkdown %}
+{% endblock content%}
+
+
+{% block defaultForm %}
+<div class="card mt-3">
+  <div class="card-header">
+    <h3>Vulnerable Form</h3>
+  </div>
+  <div class="card-body">
+    <div class="border" id="theForm">
+      <form method="POST" action={{ url_for('levels', levelId=level) }}>
+	<div class="mt-2 mb-3">
+	  <label for="payload" class="form-label">Example User Input</label>
+	  <textarea class="form-control" name="payload" id="payload" placeholder="<script>alert('testing')</script>" rows=5></textarea>
+	</div>
+	<button type="submit" id="submitBtn"  class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock defaultForm %}

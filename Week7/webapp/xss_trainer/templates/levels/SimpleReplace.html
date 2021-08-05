@@ -1,0 +1,35 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+{% markdown %}
+
+This is the first of our "proper" levels.
+
+This time we have some server side filtering in place.
+The developer knows that ```script``` tags are bad, so removes them from the output.
+
+
+### Filter
+
+```python
+def filter(data):
+    payload = data.replace("<script>", "")
+    payload = payload.replace("</script>", "")
+
+    return payload
+```
+
+
+??? tip "Hint"
+
+    Pythons string ```replace()``` function is case sensitive. What about
+    Javascript?
+
+
+{% endmarkdown%}
+
+
+{% endblock content%}
+
+{# Overload the default form with a defaultForm block #}

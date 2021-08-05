@@ -1,0 +1,45 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+{% markdown %}
+
+Users usually submit data for a reason. This page does something with
+your inputted data. The admin of this page has also coded a filter to
+strip any < > characters from the input.
+
+??? hint
+
+    When sending information on the web, data is often encoded/decoded.
+
+
+### Filter
+
+```python
+def filter(data):
+    payload = (data.replace('<', '')
+    payload = payload.replace('>', '')
+```
+
+{% endmarkdown %}
+{% endblock content%}
+
+
+{% block defaultForm %}
+<div class="card mt-3">
+  <div class="card-header">
+    <h3>Vulnerable Form</h3>
+  </div>
+  <div class="card-body">
+    <div class="border" id="theForm">
+      <form method="POST" action={{ url_for('levels', levelId=level) }}>
+	<div class="mt-2 mb-3">
+	  <label for="payload" class="form-label">Example User Input</label>
+	  <input type="text" class="form-control"name="payload" id="payload" placeholder="<script>alert('testing')</script>">
+	</div>
+	<button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

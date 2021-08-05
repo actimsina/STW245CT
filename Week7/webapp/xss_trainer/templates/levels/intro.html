@@ -1,0 +1,65 @@
+{% extends "levelBase.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/3.2.1/introjs.min.css" integrity="sha512-631ugrjzlQYCOP9P8BOLEMFspr5ooQwY3rgt8SMUa+QqtVMbY/tniEUOcABHDGjK50VExB4CNc61g5oopGqCEw==" crossorigin="anonymous" />
+
+<style>
+  .introjs-tooltip {
+      min-width: 500px;
+      max-width: 700px;
+  }
+</style>
+
+{% endblock head %} 
+
+{% block content %}
+{% markdown %}
+
+## Introduction
+
+In this VM we will look at XSS (Cross Site Scripting).
+
+This tutorial will run you through the concepts, demonstrating what
+XSS is, and the different types of XSS.  
+
+In each level you will need to trigger some javascript (usually an
+```alert()```) on the target page.  Examples are better than talking,
+so lets trigger our first alert payload using the form below.
+
+<a class="btn btn-outline-primary" onclick="showDemo()">Interactive walkthrough</a>
+{% endmarkdown %}
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/3.2.1/intro.min.js" integrity="sha512-iOr/b/615LMvxO8c+OWeMYfM5+KL/1gvjRtR8XIParS70gXVARiaRJWZN435d24F+RTPs9RVI1usPtLIfgtzGw==" crossorigin="anonymous"></script>
+
+
+<script>
+function showDemo() {
+    introJs().setOptions({
+	steps: [
+	    {
+		title: "Identifing the vulnerable input",
+		element: document.querySelector('#theForm'),
+		intro: "The first thing we need to do is identify where we can submit data.  Here its obvious (the form), but this wont always be the case"
+	    },
+	    {
+		title: "Adding some Input",
+		element: document.querySelector("#payload"),
+		intro: "Next we want to add our payload.  In this case we are just going to use <pre> &lt;script&gt; alert('testing') &lt;/script&gt;</pre>  go ahead and enter that now."  
+	    },
+	    {
+		title: "Submitting",
+		element: document.querySelector("#submitBtn"),
+		intro: "Finally Submit the form"
+	    }	
+    ]
+  }).start()
+
+}
+</script>
+
+{% endblock scripts %}

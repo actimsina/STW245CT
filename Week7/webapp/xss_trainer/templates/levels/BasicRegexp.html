@@ -1,0 +1,35 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+
+{% markdown %}
+
+The developer knows that ```script``` tags are bad, so removes them from the output.
+
+This time, we are using a regexp
+
+
+### Filter
+
+```python
+def filter(data):
+    regexp = re.compile("<\/?script>", re.IGNORECASE)
+    payload = re.sub("", payload)
+
+    return payload
+```
+
+
+??? tip "Hint"
+  
+    We cant stop the script tags being found.
+
+    However, What happens to the output *after* the script is removed.
+
+{% endmarkdown%}
+
+
+{% endblock content%}
+
+{# Overload the default form with a defaultForm block #}

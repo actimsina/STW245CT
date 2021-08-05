@@ -1,0 +1,35 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+{% markdown %}
+
+PHP is arguably the most common language for generating web pages.
+
+Lets take a look at a PHP based filter.
+
+<p><em>PHP running inside Python is a bit fragile. If it breaks, try a simpler exploit</em></p>
+
+
+### Filter
+
+```php
+<?php
+$input = $_POST["payload"];
+$output = preg_replace("/<script>/i","", $input);
+$output = preg_replace("/<\/script>/i","", $output);
+echo $output;
+?>
+```
+
+
+??? tip "Hint"
+  
+    What is the preg_replace doing?  Have we seen this before?
+
+{% endmarkdown%}
+
+
+{% endblock content%}
+
+{# Overload the default form with a defaultForm block #}

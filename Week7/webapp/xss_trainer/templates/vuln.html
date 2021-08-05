@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form>
+  <div class="form-group">
+    <label for="textInput">Input</label>
+    <input type="text" class="form-control" name="textInput", id="textInput" placeholder="something evil"></input>
+
+  </div>
+    <button type="submit" class="btn btn-primary">Go!</button>
+</form>
+
+
+{% if payload %}
+<p>You entered </p>
+<pre>{{ payload }}</pre>
+
+<p>Status was</p>
+{% if result %}
+<div class="alert alert-success">
+  <p>Cool you fired an alert</p>
+</div>
+{% else %}
+<div class="alert alert-info">
+  <p>You didn't trigger an alert.  You suck</p>
+</div>
+{% endif %}
+
+{% endif %}
+
+{% endblock content %}

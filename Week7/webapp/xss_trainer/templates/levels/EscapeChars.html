@@ -1,0 +1,55 @@
+{% extends "levelBase.html" %}
+
+{% block content %}
+
+{% markdown %}
+
+In this level some characters are getting escaped using
+backslashes. How could you send your payload without using those
+characters?
+
+??? hint
+
+    In computing, data can be represented in many ways. What other ways can text be represented?
+
+### Filter
+
+```python
+def filter(data):
+    payload = (data.replace("'", "\\'"))
+    payload = payload.replace('"', '\\"')   
+    return data
+```
+
+Or (approximately) Equivalent PHP
+```php
+<?php
+function filter($data){
+    $payload = addslashes($data);
+    return $payload;
+}
+?>
+```
+
+
+{% endmarkdown %}
+{% endblock content %}
+
+{% block defaultForm %}
+<div class="card mt-3">
+  <div class="card-header">
+    <h3>Vulnerable Form</h3>
+  </div>
+  <div class="card-body">
+    <div class="border" id="theForm">
+      <form method="POST" action={{ url_for('levels', levelId=level) }}>
+	<div class="mt-2 mb-3">
+	  <label for="payload" class="form-label">Example User Input</label>
+	  <input type="text" class="form-control" name="payload" id="payload" placeholder="<script>alert('testing')</script>">
+	</div>
+	<button type="submit" id="submitBtn"  class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock defaultForm %}
