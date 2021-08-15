@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The Dodgy Shopper</title>
+  <meta name="author" content="aa9863@coventry.ac.uk">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <a href="/">
+      <h1>Dodgy PICKLE Shopper</h1>
+      <p>Back to Home</p>
+    </a>
+    <p>Buy Widgets and Stuff</p>
+    
+    <h2>Load Saved Basket</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+	  <label for="uploadFile">Example file input</label>
+	  <input type="file" class="form-control-file" id="uploadFile" name="uploadFile">
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if message %}
+    <div class="alert alert-info">{{message}}</div>
+    {% endif %}
+  </div>
+  </body>
+</html>
+
+
+    
