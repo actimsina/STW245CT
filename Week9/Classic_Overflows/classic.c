@@ -12,13 +12,13 @@ int copy(char* input){
 
 int main(int argc, char* argv[]){
     /* Main Function*/
-  char buf[400];
+  //	char buf[400];
   printf("Smash The Stack\n");
   //Get the data
-  int r;
-  r = read(0, buf, 400);  //Save Version
+ // int r;
+//  r = read(0, buf, 400);  //Save Version
   
-  int out = copy(buf);
+  int out = copy(argv[1]);
   printf("Lose :(\n");
   return 0;
 }
