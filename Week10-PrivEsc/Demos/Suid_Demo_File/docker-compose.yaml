@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  ssh:
+    image: cueh/245_suid_demo_file
+    #Uncomment this to map SSH to localhost
+    #ports:
+    #  - "22:22"

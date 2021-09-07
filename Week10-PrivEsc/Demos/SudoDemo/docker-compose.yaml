@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  ssh:
+    image: cueh/245_sudo_demo
+    #Uncomment this to map SSH to localhost
+    #ports:
+    #  - "22:22"
