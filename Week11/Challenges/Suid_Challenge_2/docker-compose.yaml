@@ -1,8 +1,0 @@
-version: "3"
-
-services:
-  ssh:
-    image:  cueh/245_suid_challenge_2
-    #Uncomment this to map SSH to localhost
-    #ports:
-    #  - "22:22"
