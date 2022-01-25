@@ -18,7 +18,7 @@ int main(int argc, char* argv[]){
  int r;
   r = read(0, buf, 400);  //Save Version
   
-  int out = copy(argv[1]);
+  int out = copy(buf);
   printf("Lose :(\n");
   return 0;
 }
